@@ -1,5 +1,5 @@
 <template>
-<history-component />
+  <history-component />
 </template>
 
 <script setup>

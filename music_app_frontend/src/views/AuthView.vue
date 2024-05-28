@@ -1,5 +1,5 @@
 <template>
-<auth-component />
+  <auth-component />
 </template>
 
 <script setup>

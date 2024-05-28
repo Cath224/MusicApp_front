@@ -26,7 +26,41 @@ export const get = (query, pagination) => {
   return axios.get(url + "offset=" + offset + "&limit=" + limit);
 }
 
+export const patch = (artist, id) => {
+  if (artist == null || id == null) {
+    throw Error()
+  }
+  return axios.patch("api/v1/public/songs/" + id, artist)
+}
+
+export const create = (artist) => {
+  if (artist == null) {
+    throw Error()
+  }
+  return axios.post("api/v1/public/songs", artist)
+}
+
+export const uploadFile = (file, id) => {
+  if (!file || !id) {
+    throw Error()
+  }
+  let formData = new FormData()
+  formData.append("file", file)
+  return axios.post(`api/v1/public/files/song/${id}`, formData)
+}
+
+export const deleteById = (id) => {
+  if (id == null) {
+    throw Error()
+  }
+  return axios.delete("api/v1/public/songs/" + id)
+}
+
 export default {
   get,
-  getById
+  getById,
+  create,
+  patch,
+  deleteById,
+  uploadFile,
 }

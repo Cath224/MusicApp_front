@@ -2,10 +2,10 @@
   <v-sheet color="transparent">
     <v-card  color="transparent" height="80vh" flat>
       <div class="ml-4 mt-2 text-h5">Likes:</div>
-      <v-list class="ml-4 mt-2" style="background: transparent" color="transparent"
+      <v-list class="ml-5 mt-2" style="background: transparent" color="transparent"
               base-color="transparent">
         <v-list-item v-for="song in songs" :key="song?.id" :value="song">
-          <song-element-component :song="song" image-mode/>
+          <song-element-component class="mx-4" :song="song" image-mode/>
         </v-list-item>
       </v-list>
     </v-card>

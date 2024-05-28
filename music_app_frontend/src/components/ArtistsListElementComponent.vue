@@ -1,18 +1,15 @@
 <template>
-  <v-row align="center" justify="center">
-    <v-col cols="12">
-      <v-card flat :to="{name: 'artist', params: {id: props.id}}">
-        <v-avatar class="ma-0" size="large" rounded >
-          <v-img rounded :src="logoSrc">
-            <template v-slot:error>
-              <svg-icon type="mdi" size="36" :path="errorIconPath" />
-            </template>
-          </v-img>
-        </v-avatar>
-        <div class="text-subtitle-2">{{props.title}}</div>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-card class="ma-2 pa-4" color="transparent" flat :to="{name: 'artist', params: {id: props.id}}" >
+    <v-avatar class="ma-0" size="256" rounded >
+      <v-img v-if="props.fileId" rounded :src="logoSrc">
+        <template v-slot:error>
+          <svg-icon type="mdi" size="256" :path="errorIconPath" />
+        </template>
+      </v-img>
+      <svg-icon v-else type="mdi" size="256" :path="errorIconPath" />
+    </v-avatar>
+    <div class="text-subtitle-2">{{props.title}}</div>
+  </v-card>
 </template>
 
 <script setup>

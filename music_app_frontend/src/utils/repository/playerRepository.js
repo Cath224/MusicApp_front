@@ -18,7 +18,7 @@ export const generateQueue = (id) => {
   if (!id) {
     throw new Error();
   }
-  return axios.post(`api/v1/public/play/generate/by-song-id/${id}`)
+  return axios.post(`api/v1/public/play/generate/by-song-id/${id}?login=${userProvider.getUser()}`)
 }
 
 export const getCurrentQueue = () => {

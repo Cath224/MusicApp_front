@@ -35,7 +35,7 @@ export const uploadLogo = (file, id) => {
   }
   let formData = new FormData()
   console.log(file)
-  formData.append("file", file[0])
+  formData.append("file", file)
   return axios.post(`api/v1/public/files/picture/PLAYLIST/${id}`, formData)
 }
 

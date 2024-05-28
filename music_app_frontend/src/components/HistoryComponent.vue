@@ -5,7 +5,7 @@
       <v-list class="ml-4 mt-2" style="background: transparent" color="transparent"
               base-color="transparent">
         <v-list-item v-for="song in songs" :key="song?.id" :value="song">
-          <song-element-component :song="song" image-mode history-mode @delete="reloadHistory" />
+          <song-element-component class="mx-4" :song="song" image-mode history-mode @delete="reloadHistory" />
         </v-list-item>
       </v-list>
     </v-card>

@@ -1,10 +1,13 @@
+<template>
+  <home-component />
+</template>
+
+
 <script setup>
 
+import HomeComponent from "@/components/HomeComponent.vue";
 </script>
 
-<template>
-<div>TEST</div>
-</template>
 
 <style scoped>
 

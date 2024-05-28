@@ -8,10 +8,10 @@
         <v-dialog v-model="dialog" max-height="40vh" max-width="30vw">
           <template v-slot:activator="{ props: activatorProps }">
             <v-btn
-              icon="mdi-plus-box"
-              variant="plain"
-              size="small"
-              v-bind="activatorProps"
+                icon="mdi-plus-box"
+                variant="plain"
+                size="small"
+                v-bind="activatorProps"
             ></v-btn>
           </template>
           <v-card title="Create Playlist">
@@ -24,14 +24,14 @@
               <v-row dense>
                 <v-col cols="12">
                   <v-file-input
-                    v-model="playlist.logoFile"
-                    accept="image/jpg"
-                    label="Logo"
-                    show-size
-                    placeholder="Pick an playlist logo"
-                    prepend-icon="mdi-multimedia"
-                    tile
-                    flat
+                      v-model="playlist.logoFile"
+                      accept="image/jpg"
+                      label="Logo"
+                      show-size
+                      placeholder="Pick an playlist logo"
+                      prepend-icon="mdi-multimedia"
+                      tile
+                      flat
                   />
                 </v-col>
               </v-row>

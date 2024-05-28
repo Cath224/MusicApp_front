@@ -1,5 +1,5 @@
 <template>
-<playlist-component :id="props.id" />
+  <playlist-component :id="props.id" />
 </template>
 
 

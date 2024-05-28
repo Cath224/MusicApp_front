@@ -12,9 +12,11 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
+import {useAppStore} from "@/store/app";
 
 const app = createApp(App)
 
 registerPlugins(app)
 
 app.mount('#app')
+app.provide('store', useAppStore())

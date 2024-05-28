@@ -1,20 +1,20 @@
 <template>
   <v-row v-if="props.song" justify="start" align="center">
-    <v-col v-if="!!props.imageMode" cols="auto">
-      <v-img v-if="state.albumLogoSrc" class="ma-0 pa-0 text-no-wrap"  :src="state.albumLogoSrc" width="4vw" height="4vh" max-width="4vw" max-height="4vh" rounded />
-    </v-col>
-    <v-col cols="auto">
+    <v-col cols="auto" class="mx-0 px-0">
       <v-btn v-if="!store.getSongState || props.song?.id !== store.getSong?.id" icon="mdi-play" size="small"  @click="store.playSong(props.song)"></v-btn>
       <v-btn v-else icon="mdi-stop" size="small" @click="store.stopSong()"></v-btn>
     </v-col>
-    <v-col cols="auto">
-      <div class="text-white">{{ props.song?.title }}</div>
+    <v-col v-if="!!props.imageMode" class="mx-0 px-0" cols="auto">
+      <v-img v-if="state.albumLogoSrc" class="ma-0 pa-0 text-no-wrap"  :src="state.albumLogoSrc" width="4vw" height="4vh" max-width="4vw" max-height="4vh" rounded />
+    </v-col>
+    <v-col cols="auto" class="mx-0 px-0">
+      <div class="text-white mx-2">{{ props.song?.title }}</div>
     </v-col>
     <v-spacer />
-    <v-col cols="auto">
+    <v-col v-if="!disableLike" cols="auto" class="mx-0 px-0">
       <v-btn :icon="state.liked ? 'mdi-heart' : 'mdi-heart-outline'" size="small" @click="like"></v-btn>
     </v-col>
-    <v-col v-if="historyMode" cols="auto">
+    <v-col v-if="historyMode" cols="auto" class="mx-0 px-0">
       <v-btn icon="mdi-delete" size="small" @click="deleteFromHistory"></v-btn>
     </v-col>
   </v-row>
@@ -35,6 +35,7 @@ const props = defineProps({
   song: Object,
   imageMode: Boolean,
   historyMode: Boolean,
+  disableLike: Boolean,
 })
 const emit = defineEmits(['delete'])
 

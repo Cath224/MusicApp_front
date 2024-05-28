@@ -2,8 +2,8 @@
   <v-sheet color="transparent">
     <v-card color="transparent" height="80vh" flat>
       <v-tabs
-        v-model="state.tab"
-        class="mt-4 ml-4"
+          v-model="state.tab"
+          class="mt-4 ml-4"
       >
         <v-tab :value="1">Artists</v-tab>
         <v-tab :value="2">Albums</v-tab>
@@ -11,8 +11,8 @@
       </v-tabs>
       <v-window v-model="state.tab">
         <v-window-item
-          :key="1"
-          :value="1"
+            :key="1"
+            :value="1"
         >
           <v-container fluid>
             <v-list class="mt-2" style="background: transparent" color="transparent"
@@ -28,8 +28,8 @@
           </v-container>
         </v-window-item>
         <v-window-item
-          :key="2"
-          :value="2"
+            :key="2"
+            :value="2"
         >
           <v-container fluid>
             <v-list class="mt-2" style="background: transparent" color="transparent"
@@ -46,18 +46,14 @@
           </v-container>
         </v-window-item>
         <v-window-item
-          :key="3"
-          :value="3"
+            :key="3"
+            :value="3"
         >
           <v-container fluid>
             <v-list class="mt-2" style="background: transparent" color="transparent"
                     base-color="transparent">
-              <v-list-item v-for="song in state.songs" :key="song?.id" :value="song"
-                           :to="{name: 'album', params: {id: song.albumId}}">
-                <v-list-item-title class="text-white">{{ song.title }}</v-list-item-title>
-                <template v-slot:prepend>
-                  <v-img v-if="song?.album?.fileId" class="mr-4" :src="albumRepository.getLogoUrl(song?.album?.fileId)" height="5vh" width="5vh" rounded />
-                </template>
+              <v-list-item v-for="song in state.songs" :key="song?.id" :value="song">
+                <song-element-component class="mx-2" :song="song" image-mode  />
               </v-list-item>
             </v-list>
           </v-container>
@@ -73,6 +69,7 @@ import {computed, defineProps, onMounted, reactive, watch} from "vue"
 import artistRepository from "@/utils/repository/artistRepository";
 import albumRepository from "@/utils/repository/albumRepository";
 import songRepository from "@/utils/repository/songRepository";
+import SongElementComponent from "@/components/SongElementComponent.vue";
 
 const props = defineProps(["search"])
 const state = reactive({tab: 1, artists: [], albums: [], songs: []})

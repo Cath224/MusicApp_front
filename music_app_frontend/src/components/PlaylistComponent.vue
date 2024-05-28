@@ -3,7 +3,7 @@
     <v-card v-if="!!playlist" color="transparent" height="80vh" flat>
       <v-row align="start" justify="start">
         <v-col cols="auto">
-          <v-img v-if="logoSrc" class="ml-5 mt-2 " :src="logoSrc" height="18vh" width="18vh" rounded>
+          <v-img v-if="props.fileId" class="ml-5 mt-2" height="18vh" width="18vh" rounded :src="logoSrc">
             <template v-slot:error>
               <v-row justify="center" align="center" class="fill-height">
                 <v-col cols="2">
@@ -12,64 +12,64 @@
               </v-row>
             </template>
           </v-img>
-          <svg-icon v-else type="mdi" size="36" :path="errorIconPath"/>
+          <svg-icon v-else type="mdi" size="256" :path="errorIconPath" />
         </v-col>
         <v-col cols="4">
-         <v-row dense justify="start" align="center">
-           <v-col cols="auto">
-             <div class="mt-3 text-h3">{{ playlist.title }}</div>
-           </v-col>
-           <v-col cols="auto">
-             <v-dialog v-model="dialog" max-height="40vh" max-width="30vw">
-               <template v-slot:activator="{ props: activatorProps }">
-                 <v-btn
-                   icon="mdi-pencil"
-                   variant="plain"
-                   size="small"
-                   v-bind="activatorProps"
-                 ></v-btn>
-               </template>
-               <v-card title="Edit">
-                 <v-card-text>
-                   <v-row dense>
-                     <v-col cols="12">
-                       <v-text-field v-model="playlist.title" label="Title" tile flat />
-                     </v-col>
-                   </v-row>
-                   <v-row dense>
-                     <v-col cols="12">
-                       <v-select v-model="songIds" :items="songsToSelect" item-title="title" item-value="id" multiple tile flat />
-                     </v-col>
-                   </v-row>
-                   <v-row dense>
-                     <v-col cols="12">
-                       <v-file-input
-                         v-model="playlist.logoFile"
-                         accept="image/jpg"
-                         label="Logo"
-                         show-size
-                         placeholder="Pick an playlist logo"
-                         prepend-icon="mdi-multimedia"
-                         tile
-                         flat
-                       />
-                     </v-col>
-                   </v-row>
-                   <v-row dense>
-                     <v-col cols="12">
-                       <v-checkbox v-model="playlist.privatePlaylist" label="Private" tile flat />
-                     </v-col>
-                   </v-row>
-                 </v-card-text>
-                 <v-card-actions>
-                   <v-spacer/>
-                   <v-btn variant="plain" text="Close" @click="closeAddSongs" />
-                   <v-btn variant="tonal" text="Save" @click="addSongs" />
-                 </v-card-actions>
-               </v-card>
-             </v-dialog>
-           </v-col>
-         </v-row>
+          <v-row dense justify="start" align="center">
+            <v-col cols="auto">
+              <div class="mt-3 text-h3">{{ playlist.title }}</div>
+            </v-col>
+            <v-col cols="auto">
+              <v-dialog v-model="dialog" max-height="40vh" max-width="30vw">
+                <template v-slot:activator="{ props: activatorProps }">
+                  <v-btn
+                      icon="mdi-pencil"
+                      variant="plain"
+                      size="small"
+                      v-bind="activatorProps"
+                  ></v-btn>
+                </template>
+                <v-card title="Edit">
+                  <v-card-text>
+                    <v-row dense>
+                      <v-col cols="12">
+                        <v-text-field v-model="playlist.title" label="Title" tile flat />
+                      </v-col>
+                    </v-row>
+                    <v-row dense>
+                      <v-col cols="12">
+                        <v-select v-model="songIds" :items="songsToSelect" item-title="title" item-value="id" multiple tile flat />
+                      </v-col>
+                    </v-row>
+                    <v-row dense>
+                      <v-col cols="12">
+                        <v-file-input
+                            v-model="playlist.logoFile"
+                            accept="image/jpg"
+                            label="Logo"
+                            show-size
+                            placeholder="Pick an playlist logo"
+                            prepend-icon="mdi-multimedia"
+                            tile
+                            flat
+                        />
+                      </v-col>
+                    </v-row>
+                    <v-row dense>
+                      <v-col cols="12">
+                        <v-checkbox v-model="playlist.privatePlaylist" label="Private" tile flat />
+                      </v-col>
+                    </v-row>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer/>
+                    <v-btn variant="plain" text="Close" @click="closeAddSongs" />
+                    <v-btn variant="tonal" text="Save" @click="addSongs" />
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-col>
+          </v-row>
           <v-row dense justify="start" align="center">
             <v-col cols="auto">
               <div v-if="playlist.privatePlaylist" class="mt-3 text-subtitle-2">Private</div>
@@ -88,7 +88,7 @@
             <v-list v-if="playlist?.songs?.length" class="mt-2" style="background: transparent" color="transparent"
                     base-color="transparent">
               <v-list-item v-for="song in playlist.songs" :key="song?.id" :value="song">
-                <song-element-component :song="song" history-mode @delete="deleteSongFromPlayList(song?.id)"/>
+                <song-element-component class="mx-2" :song="song" history-mode @delete="deleteSongFromPlayList(song?.id)"/>
               </v-list-item>
             </v-list>
           </v-sheet>
